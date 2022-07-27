@@ -7,5 +7,5 @@
 /selenium
 /docs/_site
 /src
-*.d.ts
+#*.d.ts
 *.log
