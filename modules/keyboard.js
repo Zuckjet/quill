@@ -193,7 +193,6 @@ class Keyboard extends Module {
     const length = /[\uD800-\uDBFF][\uDC00-\uDFFF]$/.test(context.prefix)
       ? 2
       : 1;
-    if (range.index === 0 || this.quill.getLength() <= 1) return;
     let formats = {};
     const [line] = this.quill.getLine(range.index);
     let delta = new Delta().retain(range.index - length).delete(length);

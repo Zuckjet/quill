@@ -291,6 +291,9 @@ class Quill {
           change = this.editor.formatLine(range.index, range.length, {
             [name]: value,
           });
+          if (value && (name === 'code-block' || name === 'blockquote')) {
+            this.editor.insertText(range.index + range.length + 1, '\n');
+          }
         } else if (range.length === 0) {
           this.selection.format(name, value);
           return change;
