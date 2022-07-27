@@ -84,7 +84,7 @@ const tsRules = {
 };
 
 const baseConfig = {
-  mode: 'development',
+  mode: 'production',
   context: path.resolve(__dirname, '..'),
   entry: {
     'quill.js': ['./quill.ts'],
@@ -126,6 +126,9 @@ const baseConfig = {
     stats: 'minimal',
     disableHostCheck: true,
   },
+  optimization: {
+    minimize: true
+  }
 };
 
 module.exports = env => {
@@ -138,6 +141,7 @@ module.exports = env => {
       devtool: 'source-map',
     };
   }
+  baseConfig.devtool = 'source-map';
   if (env && env.coverage) {
     baseConfig.module.rules[0].use[0].options.plugins = ['istanbul'];
     return baseConfig;
