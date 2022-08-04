@@ -32,15 +32,17 @@ class Scroll extends ScrollBlot {
   static allowedChildren = [Block, BlockEmbed, Container];
 
   emitter: Emitter;
+  whitelist: string[];
   batch: false | MutationRecord[];
 
   constructor(
     registry: Registry,
     domNode: HTMLDivElement,
-    { emitter }: { emitter: Emitter },
+    { emitter, whitelist }: { emitter: Emitter; whitelist: string[] },
   ) {
     super(registry, domNode);
     this.emitter = emitter;
+    this.whitelist = whitelist;
     this.batch = false;
     this.optimize();
     this.enable();
@@ -103,6 +105,7 @@ class Scroll extends ScrollBlot {
   }
 
   insertAt(index: number, value: string, def?: unknown) {
+    if (def != null && this.whitelist != null && !this.whitelist[value]) return;
     if (index >= this.length()) {
       if (def == null || this.scroll.query(value, Scope.BLOCK) == null) {
         const blot = this.scroll.create(this.statics.defaultChild.blotName);
@@ -240,7 +243,7 @@ export interface ScrollConstructor {
   new (
     registry: Registry,
     domNode: HTMLDivElement,
-    options: { emitter: Emitter },
+    options: { emitter: Emitter; whitelist: string[] },
   ): Scroll;
 }
 

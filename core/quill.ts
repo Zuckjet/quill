@@ -35,6 +35,7 @@ interface Options {
   bounds?: HTMLElement | null;
   scrollingContainer?: HTMLElement | null;
   modules?: Record<string, unknown>;
+  formats?: string[];
 }
 
 interface ExpandedOptions extends Omit<Options, 'theme'> {
@@ -167,6 +168,7 @@ class Quill {
     ) as ScrollConstructor;
     this.scroll = new ScrollBlot(this.options.registry, this.root, {
       emitter: this.emitter,
+      whitelist: options.formats,
     });
     this.editor = new Editor(this.scroll);
     this.selection = new Selection(this.scroll, this.emitter);
