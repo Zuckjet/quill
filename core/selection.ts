@@ -98,6 +98,7 @@ class Selection {
     this.root.addEventListener('compositionstart', () => {
       this.composing = true;
       this.scroll.batchStart();
+      this.root.classList.toggle('ql-blank', false);
     });
     this.root.addEventListener('compositionend', () => {
       this.scroll.batchEnd();
