@@ -1,6 +1,6 @@
 {
   "name": "quill-zuckjet",
-  "version": "2.0.3",
+  "version": "2.0.8",
   "description": "Your powerful, rich text editor",
   "author": "Jason Chen <jhchen7@gmail.com>",
   "homepage": "http://quilljs.com",
@@ -94,6 +94,7 @@
     "trailingComma": "all"
   },
   "scripts": {
+    "dev": "webpack-dev-server --config _develop/webpack.config.js --env.dev",
     "build": "npm run lint && npm run build:webpack",
     "build:webpack": "webpack --config _develop/webpack.config.js; rm dist/quill.core dist/quill.bubble dist/quill.snow",
     "build:release": "./_develop/scripts/release.sh",

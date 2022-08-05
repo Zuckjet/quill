@@ -32,7 +32,7 @@ class Scroll extends ScrollBlot {
   static allowedChildren = [Block, BlockEmbed, Container];
 
   emitter: Emitter;
-  whitelist: string[];
+  whitelist: any;
   batch: false | MutationRecord[];
 
   constructor(
@@ -42,7 +42,12 @@ class Scroll extends ScrollBlot {
   ) {
     super(registry, domNode);
     this.emitter = emitter;
-    this.whitelist = whitelist;
+    if (Array.isArray(whitelist)) {
+      this.whitelist = whitelist.reduce((whitelists, format) => {
+        whitelists[format] = true;
+        return whitelists;
+      }, {});
+    }
     this.batch = false;
     this.optimize();
     this.enable();
@@ -96,6 +101,7 @@ class Scroll extends ScrollBlot {
   }
 
   formatAt(index, length, format, value) {
+    if (this.whitelist != null && !this.whitelist[format]) return;
     super.formatAt(index, length, format, value);
     this.optimize();
   }
