@@ -110,10 +110,13 @@ class Keyboard extends Module {
 
   listen() {
     this.quill.root.addEventListener('keydown', evt => {
-      if (evt.defaultPrevented || evt.isComposing) return;
-      const bindings = (this.bindings[evt.key] || []).concat(
-        this.bindings[evt.which] || [],
-      );
+      if (
+        evt.defaultPrevented ||
+        evt.isComposing ||
+        (evt.key === 'Enter' && evt.keyCode === 13)
+      )
+        return;
+      const bindings = this.bindings[evt.which] || [];
       const matches = bindings.filter(binding => Keyboard.match(evt, binding));
       if (matches.length === 0) return;
       const blot = Quill.find(evt.target, true);
