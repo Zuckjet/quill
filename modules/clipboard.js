@@ -162,8 +162,9 @@ class Clipboard extends Module {
         doc.body.childElementCount === 1 &&
         doc.body.firstElementChild.tagName === 'IMG'
       ) {
-        this.quill.uploader.upload(range, files);
-        return;
+        if (!this.quill.options.modules.imageUploader.upload) {
+          this.quill.uploader.upload(range, files);
+        }
       }
     }
     this.onPaste(range, { html, text });
