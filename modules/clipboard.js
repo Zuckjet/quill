@@ -152,7 +152,12 @@ class Clipboard extends Module {
     const html = e.clipboardData.getData('text/html');
     const text = e.clipboardData.getData('text/plain');
     const files = Array.from(e.clipboardData.files || []);
-    if (!html && files.length > 0) {
+    const { modules } = this.quill.options;
+    let hasImageHandler = false;
+    if (modules.imageUploader && modules.imageUploader.upload) {
+      hasImageHandler = true;
+    }
+    if (!html && files.length > 0 && !hasImageHandler) {
       this.quill.uploader.upload(range, files);
       return;
     }
@@ -162,7 +167,7 @@ class Clipboard extends Module {
         doc.body.childElementCount === 1 &&
         doc.body.firstElementChild.tagName === 'IMG'
       ) {
-        if (!this.quill.options.modules.imageUploader.upload) {
+        if (!hasImageHandler) {
           this.quill.uploader.upload(range, files);
         }
       }
