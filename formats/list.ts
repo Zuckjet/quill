@@ -4,7 +4,8 @@ import Quill from '../core/quill';
 
 class ListContainer extends Container {}
 ListContainer.blotName = 'list-container';
-ListContainer.tagName = 'OL';
+// TODO: types should be fixed at ContainerBlot
+ListContainer.tagName = ['OL', 'UL'] as any;
 
 class ListItem extends Block {
   static create(value) {
