@@ -199,7 +199,6 @@ class Clipboard extends Module<ClipboardOptions> {
     e.preventDefault();
     const range = this.quill.getSelection(true);
     if (range == null) return;
-
     // from zuckjet
     /*
 // <<<<<<< HEAD:modules/clipboard.js

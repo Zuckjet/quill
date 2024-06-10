@@ -6,7 +6,7 @@ const config = {
 };
 
 class LineHeightClass extends ClassAttributor {
-  add(node, value) {
+  add(node: HTMLElement, value: any) {
     if (!this.canAdd(node, value)) return false;
     this.remove(node);
     const underscoredValue = value.replace('.', '_');

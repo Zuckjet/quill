@@ -173,7 +173,7 @@ class BaseTheme extends Theme {
         if (select.querySelector('option') == null) {
           fillSelect(select, LINE_HEIGHTS);
         }
-        return new LineHeightPicker(select, icons.lineHeight);
+        return new LineHeightPicker(select);
       }
       if (select.querySelector('option') == null) {
         if (select.classList.contains('ql-font')) {
