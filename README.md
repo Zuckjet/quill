@@ -1,3 +1,10 @@
+## ZSXQ Tips
+
+项目包含`quill`库和它的官网库，这边主要用它的quill库，运行`npm start`后，能直接在 https://localhost:9000 端口中，页面的playground里直接调试 quilljs。
+后续要打包发布，运行`npm run build:quill`能直接打包`quill`到它的quill库中并发布。
+
+当前lock文件已调配好，在无依赖库变动的情况下，可以直接通过运行 `npm ci` 来稳定安装。（npm version > 9）
+
 <h1 align="center">
   <a href="https://quilljs.com/" title="Quill">Quill Rich Text Editor</a>
 </h1>
