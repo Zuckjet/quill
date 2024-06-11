@@ -1,6 +1,9 @@
 .*
 !.eslintrc.json
 !.eslintignore
+!.npmignore
+!.gitignore
+!.github
 
 /dist
 /node_modules
@@ -9,3 +12,7 @@
 /src
 #*.d.ts
 *.log
+node_modules
+
+test-results/
+playwright-report/
